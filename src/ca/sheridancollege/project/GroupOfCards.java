@@ -20,11 +20,18 @@ import java.util.Collections;
 public class GroupOfCards {
 
     // The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
+    private ArrayList<Card> deck;
+
+    public void intializeCards() {
+        GenerateDeck createDeck = new GenerateDeck();
+        deck = createDeck.generateDeck();
+    }
+
     private int size;// the size of the grouping
 
     public GroupOfCards(int size) {
         this.size = size;
+        intializeCards();
     }
 
     /**
@@ -32,12 +39,17 @@ public class GroupOfCards {
      *
      * @return the group of cards.
      */
-    public ArrayList<Card> getCards() {
-        return cards;
+    public ArrayList<Card> getDeck() {
+        return deck;
+    }
+
+    public void removeCard(int i) {
+        deck.remove(i);
+        size -= 1;
     }
 
     public void shuffle() {
-        Collections.shuffle(cards);
+        Collections.shuffle(deck);
     }
 
     /**
