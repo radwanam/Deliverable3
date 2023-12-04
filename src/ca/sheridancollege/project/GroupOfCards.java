@@ -24,7 +24,8 @@ public class GroupOfCards {
 
     public void intializeCards() {
         GenerateDeck createDeck = new GenerateDeck();
-        deck = createDeck.generateDeck();
+        deck = createDeck.generateDeck(); // creates the deck
+        shuffle(); // shuffles the deck
     }
 
     private int size;// the size of the grouping

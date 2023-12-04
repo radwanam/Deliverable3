@@ -2,14 +2,13 @@ package ca.sheridancollege.project;
 
 import java.util.ArrayList;
 
-public class Hand extends GroupOfCards implements Comparable<Hand> {
+public class Hand implements Comparable<Hand> {
     private ArrayList<Card> hand;
     private int handVal = 0;
+    private GroupOfCards deck;
 
-    public Hand() {
-        super(52); // creates a deck of 52 cards
-        shuffle(); // shuffles the deck
-
+    public Hand(GroupOfCards deck) {
+        this.deck = deck;
         hand = new ArrayList<>();
 
         drawCard();
@@ -20,12 +19,18 @@ public class Hand extends GroupOfCards implements Comparable<Hand> {
         return handVal;
     }
 
+    public void printDeck() {
+        for (int i = 0; i < deck.getSize(); i++) {
+            System.out.println(deck.getDeck().get(i));
+        }
+    }
+
     // Used at the beginning to have two cards in the hand and used when player
     // decides to hit
     public void drawCard() {
-        Card card = getDeck().get(getSize() - 1);
+        Card card = deck.getDeck().get(deck.getSize() - 1);
         addCard(card);
-        removeCard(getSize() - 1);
+        deck.removeCard(deck.getSize() - 1);
         handVal += card.getValue().getNum();
     }
 
@@ -46,11 +51,11 @@ public class Hand extends GroupOfCards implements Comparable<Hand> {
 
     @Override
     public String toString() {
-        String printCards = "This is your hand: \n";
+        String printCards = "";
         for (int i = 0; i < hand.size(); i++) {
             printCards += hand.get(i).getValue() + " of " + hand.get(i).getSuit() + "\n";
         }
-        printCards += "Total value of your hand is: " + handVal;
+        printCards += "Total value of hand is: " + handVal;
         return printCards;
     }
 

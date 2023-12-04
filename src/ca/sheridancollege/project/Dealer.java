@@ -1,25 +1,27 @@
 package ca.sheridancollege.project;
 
-import java.util.Scanner;
-
 public class Dealer extends User {
     private Hand hand;
-    private double bet;
+    private GroupOfCards deck;
 
-    public Dealer(String name) {
+    public Dealer(String name, GroupOfCards deck) {
         super(name);
-        hand = new Hand();
+        this.deck = deck;
+        hand = new Hand(deck);
     }
 
     public Hand getDealerHand() {
         return hand;
     }
 
+    public void revealFirstCard() {
+        System.out.println("Dealer's first card: ");
+        System.out.println(hand.getCard(0) + "\n");
+    }
+
     @Override
     public void play() {
-        System.out.println("Dealer's first card: ");
-        System.out.println(hand.getCard(0));
-        if (hand.getHandVal() <= 16) {
+        while (hand.getHandVal() <= 16) {
             hand.drawCard();
         }
     }

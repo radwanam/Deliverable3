@@ -5,8 +5,6 @@
  */
 package ca.sheridancollege.project;
 
-import java.util.Random;
-
 /**
  * A class that models each Player and Dealer in the game. users have an
  * identifier,
